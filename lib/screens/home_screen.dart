@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../constants.dart';
 import '../models/question_model.dart';
+import '../widgets/question_widget.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -32,6 +33,18 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('Quiz App'),
         backgroundColor: background,
         shadowColor: Colors.transparent,
+      ),
+      body: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        child: Column(
+          children: [
+            QuestionWidget(question: _questions[index].title,
+                indexAction: index,
+                totalQuestions: _questions.length,),
+                Divider(color: neutral),
+          ],
+        ) ,
       ),
     );
   }
