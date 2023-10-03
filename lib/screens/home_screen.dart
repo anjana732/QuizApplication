@@ -3,6 +3,7 @@ import '../constants.dart';
 import '../models/question_model.dart';
 import '../widgets/question_widget.dart';
 import '../widgets/next_button.dart';
+import '../widgets/option_card.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -25,6 +26,15 @@ class _HomeScreenState extends State<HomeScreen> {
       options: {'15':false, '30':false, '40':true, '10':false},
     )];
   int index = 0;
+  void nextQuestion(){
+    if(index == _questions.length-1){
+      return;
+    }else{
+      setState(() {
+        index++;
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
 
@@ -44,12 +54,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 indexAction: index,
                 totalQuestions: _questions.length,),
                 Divider(color: neutral),
+            const SizedBox(height: 25.0),
+            for(int i=0;i< _questions[index].options.keys.length;i++)
+              OptionCard(option: _questions[index].options.keys.toList()[i]),
+
           ],
         ) ,
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: NextButton(),
+        child: NextButton(
+          nextQuestion: nextQuestion,
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
