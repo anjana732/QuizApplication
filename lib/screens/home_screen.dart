@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Divider(color: neutral),
             const SizedBox(height: 25.0),
             for(int i=0;i< _questions[index].options.keys.length;i++)
-              OptionCard(option: _questions[index].options.keys.toList()[i]),
+          //    OptionCard(option: _questions[index].options.keys.toList()[i]),
 
           ],
         ) ,
