@@ -26,6 +26,12 @@ class _HomeScreenState extends State<HomeScreen> {
       options: {'15':false, '30':false, '40':true, '10':false},
     )];
   int index = 0;
+  bool isPressed = false;
+  void changeColor(){
+    setState(() {
+      isPressed = true;
+    });
+  }
   void nextQuestion(){
     if(index == _questions.length-1){
       return;
@@ -55,8 +61,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 totalQuestions: _questions.length,),
                 Divider(color: neutral),
             const SizedBox(height: 25.0),
-            for(int i=0;i< _questions[index].options.keys.length;i++);
-              OptionCard(option: _questions[index].options.keys.toList()[i]),
+            for(int i=0;i< _questions[index].options.keys.length;i++)
+              OptionCard(option: _questions[index].options.keys.toList()[i],
+                  color: isPressed ? _questions[index].options.values.toList()[i] == true
+                      ? correct : incorrect : neutral,
+                  onTap: changeColor ,
+              ),
 
           ],
         ) ,
